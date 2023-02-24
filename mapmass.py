@@ -25,21 +25,21 @@ for target in targets:
     subprocess.run(masscan_cmd, shell=True)
     print(f'Masscan scan for {target} complete.')
 
-# # Run Nmap scans on open ports
-# for target in targets:
-#     target_out = str(target).replace('/', '_')
-#     open_ports = []
-#     with open(f'{args.output_dir}/{target_out}.gnmap') as f:
-#         for line in f:
-#             if 'Ports:' in line:
-#                 ports_str = line.strip().split(':')[1]
-#                 ports_list = ports_str.split(',')
-#                 for port in ports_list:
-#                     port_num = port.split('/')[0]
-#                     open_ports.append(port_num)
+# Run Nmap scans on open ports
+for target in targets:
+    target_out = str(target).replace('/', '_')
+    open_ports = []
+    with open(f'{args.output_dir}/{target_out}.gnmap') as f:
+        for line in f:
+            if 'Ports:' in line:
+                ports_str = line.strip().split(':')[1]
+                ports_list = ports_str.split(',')
+                for port in ports_list:
+                    port_num = port.split('/')[0]
+                    open_ports.append(port_num)
     
-#     open_ports_str = ','.join(open_ports)
+    open_ports_str = ','.join(open_ports)
     
-#     nmap_cmd = f'nmap -p{open_ports_str} {args.nmap_args} {target} -oA {args.output_dir}/{target_out}_nmap'
-#     subprocess.run(nmap_cmd, shell=True)
-#     print(f'Nmap scan for {target} complete.')
+    nmap_cmd = f'nmap -p{open_ports_str} {args.nmap_args} {target} -oA {args.output_dir}/{target_out}_nmap'
+    subprocess.run(nmap_cmd, shell=True)
+    print(f'Nmap scan for {target} complete.')
