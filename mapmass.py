@@ -20,14 +20,14 @@ targets = args.target.split(',')
 
 # Run Masscan scans
 for target in targets:
-    masscan_cmd = f'masscan {target} {args.masscan_args} --rate=10000 -oG {args.output_dir}/{target}.gnmap'
+    masscan_cmd = f'masscan {target} {args.masscan_args} --rate=10000 -oG {args.output_dir}/{target.replace('/', '_')}.gnmap'
     subprocess.run(masscan_cmd, shell=True)
     print(f'Masscan scan for {target} complete.')
 
 # Run Nmap scans on open ports
 for target in targets:
     open_ports = []
-    with open(f'{args.output_dir}/{target}.gnmap') as f:
+    with open(f'{args.output_dir}/{target.replace('/', '_')}.gnmap') as f:
         for line in f:
             if 'Ports:' in line:
                 ports_str = line.strip().split(':')[1]
@@ -38,6 +38,6 @@ for target in targets:
     
     open_ports_str = ','.join(open_ports)
     
-    nmap_cmd = f'nmap -p{open_ports_str} {args.nmap_args} {target} -oA {args.output_dir}/{target}_nmap'
+    nmap_cmd = f'nmap -p{open_ports_str} {args.nmap_args} {target} -oA {args.output_dir}/{target.replace('/', '_')}_nmap'
     subprocess.run(nmap_cmd, shell=True)
     print(f'Nmap scan for {target} complete.')
