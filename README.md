@@ -1,4 +1,4 @@
-# mapmass
+# MapMass
 This Python script can be used to run Masscan and Nmap scans against CIDR, IP, or domain targets, and save the results in separate folders. The script accepts user-defined parameters for Masscan and Nmap commands, such as port range, scan rate, and additional options.
 
 ## Requirements
@@ -37,10 +37,9 @@ The script saves the following files in the output directory:
 * ` <target>_nmap.nmap `: Nmap scan results in Nmap format
 If you use the ` -oA ` option with Nmap, the script will also save merged results in three formats (` <target>_nmap.gnmap, <target>_nmap.txt, and <target>_nmap.xml `).
 
-**## License**
-
+## License
 This script is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
 Make sure to add the LICENSE file to your repository as well. You can generate a MIT license using websites like Choose a License.
 
-**## Contributing**
+## Contributing
 If you find a bug or have a feature request, please create an issue on the GitHub repository. You can also submit a pull request with your proposed changes.
