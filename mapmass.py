@@ -40,6 +40,6 @@ for target in targets:
     
     open_ports_str = ','.join(open_ports)
     
-    nmap_cmd = f'nmap -p{open_ports_str} {args.nmap_args} {target} -oA {args.output_dir}/{target.replace('/', '_')}_nmap'
+    nmap_cmd = f'nmap -p{open_ports_str} {args.nmap_args} {target} -oA {args.output_dir}/{target_out}_nmap'
     subprocess.run(nmap_cmd, shell=True)
     print(f'Nmap scan for {target} complete.')
